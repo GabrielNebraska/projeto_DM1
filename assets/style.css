@@ -5,7 +5,7 @@
 body {
   margin: 0;
   font-family: 'Passion One', sans-serif;
-  background-color: #FFE448;
+  background-color: #0d8f3f;
 }
 
 h2 {
@@ -444,4 +444,205 @@ button img {
     height: 28px;
     font-size: 14px;
   }
+  /* Estilo do contêiner do carrinho */
+.cart-container {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Título do carrinho */
+.cart-container h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Estilo de cada item no carrinho */
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Imagem do item no carrinho */
+.cart-item-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 15px;
+}
+
+/* Informações do item no carrinho */
+.cart-item-info {
+  flex-grow: 1;
+  margin-right: 15px;
+}
+
+.cart-item-info h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 5px;
+  color: #333;
+}
+
+.cart-item-info p {
+  font-size: 14px;
+  margin: 0;
+  color: #666;
+}
+
+/* Botão de remover item */
+.remove-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.remove-button:hover {
+  background-color: #e60000;
+}
+
+/* Mensagem de carrinho vazio */
+.cart-container p {
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+  margin: 20px 0;
+}
+
+/* Botão de checkout (opcional) */
+.checkout-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+}
+
+.checkout-button:hover {
+  background-color: #45a049;
+}/* Estilo do contêiner do carrinho */
+.cart-container {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Título do carrinho */
+.cart-container h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Estilo de cada item no carrinho */
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Imagem do item no carrinho */
+.cart-item-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 15px;
+}
+
+/* Informações do item no carrinho */
+.cart-item-info {
+  flex-grow: 1;
+  margin-right: 15px;
+}
+
+.cart-item-info h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 5px;
+  color: #333;
+}
+
+.cart-item-info p {
+  font-size: 14px;
+  margin: 0;
+  color: #666;
+}
+
+/* Botão de remover item */
+.remove-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.remove-button:hover {
+  background-color: #e60000;
+}
+
+/* Mensagem de carrinho vazio */
+.cart-container p {
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+  margin: 20px 0;
+}
+
+/* Botão de checkout (opcional) */
+.checkout-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+}
+
+.checkout-button:hover {
+  background-color: #45a049;
+}
 }

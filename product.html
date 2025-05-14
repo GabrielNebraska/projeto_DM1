@@ -3,163 +3,174 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Product - Project-Project-DevMobile</title>
+    <title>Product - Project-DevMobile</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link rel="stylesheet" href="assets/style.css" />
   </head>
-  <body id="app" style="background-color: #e3e3e3">
+  <body style="background-color: #e3e3e3">
     <!-- NAVBAR -->
     <div class="nav">
       <a href="index.html">
         <img
-        src="assets/images/The-Simpsons-28-04-2025 3 (1).png"
-        alt="The Simpsons"/>
+          src="assets/images/Chaves_logo.svg.png"
+          alt="Chaves_logo"
+        />
       </a>
-      
     </div>
-    <div id="container">
-      <div v-if="product" class="details-product">
-        <img :src="product.image" alt="Produto" class="details-img" />
-        <div class="details-items">
-          <h1 class="details-name">{{ product.title }}</h1>
-          <p class="details-price">{{ product.price }}</p>
-          <div class="quantity-control">
-            <span>Quantidade</span>
-            <button class="quantity-button" @click="diminuir" :disabled="quantity <= 0">−</button>
-            <span class="quantity-value">{{ quantity }}</span>
-            <button class="quantity-button" @click="aumentar" :disabled="quantity >= product.inStock">+</button>
-          </div>          
-          <div class="container-button">
-            <button
-              class="button"
-              style="margin: 5px"
-              :class="{ disabledButton: product.inStock < 1 }"
-              @click="addToCart(product)"
-              :disabled="product.inStock < 1"
-            >
-              <img
-                src="assets/images/shopping_cart_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.png"
-                alt="cart"
-              />
-            </button>
-            <button style="margin: 5px" class="button">Buy Now</button>
+
+    <!-- VUE APP -->
+    <div id="app">
+      <div id="container">
+        <div v-if="product" class="details-product">
+          <img :src="product.image" alt="Produto" class="details-img" />
+          <div class="details-items">
+            <h1 class="details-name">{{ product.title }}</h1>
+            <p class="details-price">{{ product.price }}</p>
+            <div class="quantity-control">
+              <span>Quantidade</span>
+              <button
+                class="quantity-button"
+                @click="diminuir"
+                :disabled="quantity <= 1"
+              >
+                −
+              </button>
+              <span class="quantity-value">{{ quantity }}</span>
+              <button
+                class="quantity-button"
+                @click="aumentar"
+                :disabled="quantity >= product.inStock"
+              >
+                +
+              </button>
+            </div>
+            <div class="container-button">
+              <button
+                class="button"
+                style="margin: 5px"
+                :class="{ disabledButton: product.inStock < 1 }"
+                @click="addToCart(product)"
+                :disabled="product.inStock < 1"
+              >
+                <img
+                  src="assets/images/shopping_cart_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.png"
+                  alt="cart"
+                />
+              </button>
+              <button style="margin: 5px" class="button">Buy Now</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="footer">
-      <img
-        src="assets/images/The-Simpsons-28-04-2025 3 (1).png"
-        alt="The Simpsons"
-      />
-    </div>
 
+    <!-- SCRIPT -->
     <script>
       const { createApp, ref } = Vue;
-    
+
       createApp({
         setup() {
           const product = ref(null);
           const quantity = ref(1); // contador começa em 1
-    
+
           const allProducts = [
             {
               id: 1,
-              title: "Pop! Homer",
-              image: "assets/images/funkoHomer.png",
+              title: "Boné do chaves",
+              image: "assets/images/bonechaves.jpeg",
               inStock: 0,
               price: "R$150,00",
             },
             {
               id: 2,
-              title: "Pop! Skeleton Margie",
-              image: "assets/images/funkopopMargeSimpson.webp",
+              title: "Boneco Chaves",
+              image: "assets/images/boneco_chaves.webp",
               inStock: 0,
               price: "R$120,00",
             },
             {
               id: 3,
-              title: "Pop! Maggie Simpson",
-              image: "assets/images/funkoMaggieSimpson.webp",
+              title: "Chaves no Barril",
+              image: "assets/images/bonecochavesbarriu.webp",
               inStock: 30,
               price: "R$230,00",
             },
             {
               id: 4,
-              title: "Pop! Bart Simpson",
-              image: "assets/images/funkopopBart.jpg",
+              title: "Boneco Chaves",
+              image: "assets/images/boneco_chaves1.webp",
               inStock: 2,
               price: "R$190,00",
             },
             {
               id: 5,
-              title: "Pop! Milhouse Fallout",
-              image: "assets/images/funkopopMilhouseFalloutBoy.png",
+              title: "Boné do Seu Madruga",
+              image: "assets/images/boneseumadruga.jpeg",
               inStock: 30,
               price: "R$160,00",
             },
             {
               id: 6,
-              title: "Pop! Hugo Simpson",
-              image: "assets/images/funkopopHugoSinpson.jpg",
+              title: "Boneco Kiko",
+              image: "assets/images/kikoboneco.jpeg",
               inStock: 3,
               price: "R$200,00",
             },
             {
               id: 7,
-              title: "Pop! Sideshow Bob",
-              image: "assets/images/funkopopSideshowBob.webp",
+              title: "Funko NhoNho",
+              image: "assets/images/nhonhofunko.jpeg",
               inStock: 10,
               price: "R$190,00",
             },
             {
               id: 8,
-              title: "Pop! Ralph Wiggum",
-              image: "assets/images/funkopopRalphWiggum.webp",
+              title: "Boneco Seu Barriga",
+              image: "assets/images/seubarrigaboneco.jpeg",
               inStock: 0,
               price: "R$180,00",
             },
             {
               id: 9,
-              title: " Pop! Deep Space Homer",
-              image: "assets/images/deepspacehomer.jfif",
+              title: "Boneco Seu Madruga",
+              image: "assets/images/seumadrugaboneco.jpeg",
               inStock: 0,
               price: "R$250,00",
             },
             {
               id: 10,
-              title: "Pop! Mr. Sparkley",
-              image: "assets/images/mrsparkley.jfif",
+              title: "Camisa Seu Madruga",
+              image: "assets/images/camisaMadruga.webp",
               inStock: 0,
               price: "R$150,00",
             },
             {
               id: 11,
-              title: "Pop! Evil Homer",
-              image: "assets/images/evilhomer.jfif",
+              title: "Boneco Chapolin Colorado",
+              image: "assets/images/chapolin_boneco.jpeg",
               inStock: 7,
               price: "R$170,00",
             },
             {
               id: 12,
-              title: "Pop! Lisandra",
-              image: "assets/images/lisandra.jfif",
+              title: "Boneca Dona Florinda",
+              image: "assets/images/boneca_florinda.jpeg",
               inStock: 20,
               price: "R$50,00",
             },
           ];
-    
+
           const getProductById = (id) => {
             return allProducts.find((product) => product.id === id);
           };
-    
+
           const addToCart = (product) => {
             let storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    
+
             const existingItem = storedCart.find(
               (item) => item.id === product.id
             );
-    
+
             if (existingItem) {
               existingItem.quantity += quantity.value;
             } else {
@@ -171,11 +182,11 @@
                 quantity: quantity.value,
               });
             }
-    
+
             localStorage.setItem("cart", JSON.stringify(storedCart));
             alert("Produto adicionado ao carrinho! ✅");
           };
-    
+
           const loadProduct = () => {
             const urlParams = new URLSearchParams(window.location.search);
             const id = parseInt(urlParams.get("id"));
@@ -183,21 +194,21 @@
               product.value = getProductById(id);
             }
           };
-    
+
           const aumentar = () => {
             if (product.value && quantity.value < product.value.inStock) {
               quantity.value++;
             }
           };
-    
+
           const diminuir = () => {
             if (quantity.value > 1) {
               quantity.value--;
             }
           };
-    
+
           loadProduct();
-    
+
           return {
             product,
             quantity,
@@ -208,5 +219,5 @@
         },
       }).mount("#app");
     </script>
-      </body>
+  </body>
 </html>

@@ -1,123 +1,158 @@
-
-const { createApp, ref } = Vue;
+const { createApp, ref, computed } = Vue;
 
 createApp({
     setup() {
-        const cart = ref(0);
+        const cart = ref(0); // Contador de itens no carrinho
+        const cartItems = ref(JSON.parse(localStorage.getItem("cart")) || []); // Itens do carrinho
 
+        // Função para adicionar um produto ao carrinho
         const addToCart = (product) => {
-            cart.value += 1;
-            let storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-      
-            const existingItem = storedCart.find((item) => item.id === product.id);
-      
-            if (existingItem) {
-              existingItem.quantity += 1;
-            } else {
-              storedCart.push({
-                id: product.id,
-                title: product.title,
-                description: product.description,
-                image: product.image,
-                quantity: 1,
-              });
-            }
-      
-            localStorage.setItem("cart", JSON.stringify(storedCart));
-          };
+            const existingItem = cartItems.value.find((item) => item.id === product.id);
 
+            if (existingItem) {
+                existingItem.quantity += 1; // Incrementa a quantidade se o item já estiver no carrinho
+            } else {
+                cartItems.value.push({
+                    id: product.id,
+                    title: product.title,
+                    image: product.image,
+                    price: product.price,
+                    quantity: 1,
+                });
+            }
+
+            cart.value += 1; // Incrementa o contador de itens no carrinho
+            localStorage.setItem("cart", JSON.stringify(cartItems.value)); // Atualiza o localStorage
+        };
+
+        // Função para remover um produto do carrinho
+        const removeFromCart = (id) => {
+            const itemIndex = cartItems.value.findIndex((item) => item.id === id);
+
+            if (itemIndex !== -1) {
+                cart.value -= cartItems.value[itemIndex].quantity; // Decrementa o contador de itens
+                cartItems.value.splice(itemIndex, 1); // Remove o item do carrinho
+                localStorage.setItem("cart", JSON.stringify(cartItems.value)); // Atualiza o localStorage
+            }
+        };
+
+        // Lista de produtos
         const products = ref([
             {
                 id: 1,
-                title: 'Pop! Homer',
-                image:'assets/images/funkoHomer.png',
+                title: "Boné do chaves",
+                image: "assets/images/bonechaves.jpeg",
                 inStock: 0,
-                price: 'R$150,00'
+                price: "R$150,00",
             },
             {
                 id: 2,
-                title: 'Pop! Skeleton Margie',
-                image:'assets/images/funkopopMargeSimpson.webp',
+                title: "Boneco Chaves",
+                image: "assets/images/boneco_chaves.webp",
                 inStock: 0,
-                price: 'R$120,00'
+                price: "R$120,00",
             },
             {
                 id: 3,
-                title: 'Pop! Maggie Simpson',
-                image: 'assets/images/funkoMaggieSimpson.webp',
+                title: "Chaves no Barril",
+                image: "assets/images/bonecochavesbarriu.webp",
                 inStock: 30,
-                price: 'R$230,00'
+                price: "R$230,00",
             },
             {
                 id: 4,
-               title: 'Pop! Bart Simpson',
-               image: 'assets/images/funkopopBart.jpg',
-               inStock: 2,
-               price: 'R$190,00'
+                title: "Boneco Chaves",
+                image: "assets/images/boneco_chaves1.webp",
+                inStock: 2,
+                price: "R$190,00",
             },
             {
                 id: 5,
-                 title: 'Pop! Milhouse Fallout',
-                 image:'assets/images/funkopopMilhouseFalloutBoy.png',
-                 inStock: 30,
-                 price: 'R$160,00'
+                title: "Boné do Seu Madruga",
+                image: "assets/images/boneseumadruga.jpeg",
+                inStock: 30,
+                price: "R$160,00",
             },
             {
                 id: 6,
-                title: 'Pop! Hugo Simpson',
-                image: 'assets/images/funkopopHugoSinpson.jpg',
+                title: "Boneco Kiko",
+                image: "assets/images/kikoboneco.jpeg",
                 inStock: 3,
-                price: 'R$200,00'
+                price: "R$200,00",
             },
             {
                 id: 7,
-                title: 'Pop! Sideshow Bob',
-                image:'assets/images/funkopopSideshowBob.webp',
+                title: "Funko NhoNho",
+                image: "assets/images/nhonhofunko.jpeg",
                 inStock: 10,
-                price: 'R$190,00'
+                price: "R$190,00",
             },
             {
                 id: 8,
-                title:'Pop! Ralph Wiggum',
-                image:'assets/images/funkopopRalphWiggum.webp',
+                title: "Boneco Seu Barriga",
+                image: "assets/images/seubarrigaboneco.jpeg",
                 inStock: 0,
-                price: 'R$180,00'
+                price: "R$180,00",
             },
             {
                 id: 9,
-                title:' Pop! Deep Space Homer',
-                image:'assets/images/deepspacehomer.jfif',
+                title: "Boneco Seu Madruga",
+                image: "assets/images/seumadrugaboneco.jpeg",
                 inStock: 0,
-                price: 'R$250,00'
+                price: "R$250,00",
             },
             {
                 id: 10,
-                title:'Pop! Mr. Sparkley',
-                image:'assets/images/mrsparkley.jfif',
+                title: "Camisa Seu Madruga",
+                image: "assets/images/camisaMadruga.webp",
                 inStock: 0,
-                price: 'R$150,00'
+                price: "R$150,00",
             },
             {
                 id: 11,
-                title:'Pop! Evil Homer',
-                image:'assets/images/evilhomer.jfif',
+                title: "Boneco Chapolin Colorado",
+                image: "assets/images/chapolin_boneco.jpeg",
                 inStock: 7,
-                price: 'R$170,00'
+                price: "R$170,00",
             },
             {
                 id: 12,
-                title:'Pop! Lisandra',
-                image:'assets/images/lisandra.jfif',
+                title: "Boneca Dona Florinda",
+                image: "assets/images/boneca_florinda.jpeg",
                 inStock: 20,
-                price: 'R$50,00'
-            }
-
+                price: "R$50,00",
+            },
         ]);
+
+        // Controle do carrossel
+        const currentIndex = ref(0);
+        const itemsPerSlide = 4;
+
+        const visibleProducts = computed(() => {
+            return products.value.slice(currentIndex.value, currentIndex.value + itemsPerSlide);
+        });
+
+        const nextSlide = () => {
+            if (currentIndex.value + itemsPerSlide < products.value.length) {
+                currentIndex.value += itemsPerSlide; // Avança um grupo de produtos por vez
+            }
+        };
+
+        const prevSlide = () => {
+            if (currentIndex.value > 0) {
+                currentIndex.value -= itemsPerSlide; // Retrocede um grupo de produtos por vez
+            }
+        };
 
         return {
             cart,
+            cartItems,
+            addToCart,
+            removeFromCart,
             products,
-            addToCart
+            visibleProducts,
+            nextSlide,
+            prevSlide,
         };
     }
 }).mount('#app');
